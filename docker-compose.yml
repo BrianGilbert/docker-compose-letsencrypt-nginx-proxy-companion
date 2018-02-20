@@ -9,6 +9,7 @@ services:
     ports:
       - "${IP:-0.0.0.0}:80:80"
       - "${IP:-0.0.0.0}:443:443"
+      - "${IP:-0.0.0.0}:5601:5601"
     volumes:
       - ${NGINX_FILES_PATH:-./data}/conf.d:/etc/nginx/conf.d
       - ${NGINX_FILES_PATH:-./data}/vhost.d:/etc/nginx/vhost.d
@@ -55,6 +56,18 @@ services:
       options:
         max-size: ${NGINX_LETSENCRYPT_LOG_MAX_SIZE:-2m}
         max-file: ${NGINX_LETSENCRYPT_LOG_MAX_FILE:-10}
+
+
+  elk:
+    image: sebp/elk
+    environment:
+      VIRTUAL_HOST: do-whale-01.rl.cm
+      LETSENCRYPT_HOST: do-whale-01.rl.cm
+      LETSENCRYPT_EMAIL: support@realityloop.com
+      VIRTUAL_PORT: 5601
+    ports:
+      - 127.0.0.1:9200:9200
+      - 5044:5044
 
 networks:
   default:
