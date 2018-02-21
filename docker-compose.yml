@@ -59,7 +59,7 @@ services:
 
 
   elk:
-    image: sebp/elk
+    image: gnrno/elk
     environment:
       VIRTUAL_HOST: do-whale-01.rl.cm
       LETSENCRYPT_HOST: do-whale-01.rl.cm
