@@ -68,6 +68,8 @@ services:
     ports:
       - 127.0.0.1:9200:9200
       - 5044:5044
+    volumes:
+      - ${NGINX_FILES_PATH:-./data}/certs:/etc/nginx/certs:ro
 
 networks:
   default:
