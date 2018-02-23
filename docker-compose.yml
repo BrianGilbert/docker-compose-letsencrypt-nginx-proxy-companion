@@ -52,6 +52,7 @@ services:
     environment:
       NGINX_DOCKER_GEN_CONTAINER: ${DOCKER_GEN:-nginx-gen}
       NGINX_PROXY_CONTAINER: ${NGINX_WEB:-nginx-web}
+      ACME_CA_URI: ${ACME_CA_URI:-https://acme-v01.api.letsencrypt.org/directory}
     logging:
       options:
         max-size: ${NGINX_LETSENCRYPT_LOG_MAX_SIZE:-2m}
@@ -65,9 +66,9 @@ services:
       LETSENCRYPT_HOST: do-whale-01.rl.cm
       LETSENCRYPT_EMAIL: support@realityloop.com
       VIRTUAL_PORT: 5601
-    ports:
-      - 127.0.0.1:9200:9200
-      - 5044:5044
+  ports:
+    - "9200:9200"
+    - "5044:5044"
     volumes:
       - ${NGINX_FILES_PATH:-./data}/certs:/etc/nginx/certs:ro
 
