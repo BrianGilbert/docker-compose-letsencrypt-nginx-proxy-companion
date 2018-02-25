@@ -60,6 +60,7 @@ services:
 
   elk:
     image: gnrno/elk
+    restart: always
     environment:
       VIRTUAL_HOST: do-whale-01.rl.cm
       LETSENCRYPT_HOST: do-whale-01.rl.cm
